@@ -2,12 +2,7 @@ Project is on GitHub https://github.com/MityaRo/CI-workshop
 
 - .netrc :
 
-machine api.heroku.com
-  login r.novosad@outlook.com
-  password @Fluder123
-machine git.heroku.com
-  login r.novosad@outlook.com
-  password @Fluder123
+
   
 get key from https://dashboard.heroku.com/account
 
@@ -19,7 +14,7 @@ app prefix should be lowercase letters, numbers and dashes
 - Sauce Labs environment variables:
 
 SAUCE_USERNAME: rnovosad
-SAUCE_ACCESS_KEY: Fluder123
+SAUCE_ACCESS_KEY: 
 
 - wdio.conf.js:
 

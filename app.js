@@ -8,7 +8,7 @@ var express = require('express')
 
 
 var app = express()
-app.set('port', process.env.PORT || 3000)
+var port = process.env.PORT
 
 function compile(str, path) {
   return stylus(str)

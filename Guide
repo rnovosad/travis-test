@@ -1,0 +1,40 @@
+Project is on GitHub https://github.com/MityaRo/CI-workshop
+
+- .netrc :
+
+machine api.heroku.com
+  login r.novosad@outlook.com
+  password @Fluder123
+machine git.heroku.com
+  login r.novosad@outlook.com
+  password @Fluder123
+  
+get key from https://dashboard.heroku.com/account
+
+- .travis.yml
+
+get from https://github.com/MityaRo/CI-workshop-helpers/blob/master/.travis.yml
+app prefix should be lowercase letters, numbers and dashes
+
+- Sauce Labs environment variables:
+
+SAUCE_USERNAME: rnovosad
+SAUCE_ACCESS_KEY: Fluder123
+
+- wdio.conf.js:
+
+In service providers add:
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+services: add 'sauce' => services: ['sauce','selenium-standalone'],
+
+- test/example_test.js:
+
+    var branchName = process.env.TRAVIS_BRANCH
+    var branchUrl = branchName
+        ? 'http://[your prefix]-' + branchName + '.herokuapp.com'
+        : 'http://myurl.com'
+        
+- app.js:
+
+- var port = process.env.PORT

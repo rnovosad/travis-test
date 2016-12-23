@@ -1,3 +1,32 @@
-language: ruby
-rvm:
- - 2.2.3
+language: node_js
+
+node_js:
+- '6'
+
+addons:
+  apt:
+    sources:
+    - heroku
+    packages:
+    - heroku-toolbelt
+        
+install:
+- npm install
+
+script: true
+
+before_deploy:
+- cat .netrc >> $HOME/.netrc
+- chmod 0600 /home/travis/.netrc
+- heroku apps
+- heroku apps | grep -q [app-prefix]-$TRAVIS_BRANCH || heroku apps:create [app-prefix]-$TRAVIS_BRANCH
+- heroku git:remote -a [app-prefix]-$TRAVIS_BRANCH
+
+deploy:
+  provider: heroku
+  api_key: [your Heroku key]
+  app: [app-prefix]-$TRAVIS_BRANCH
+  on: $TRAVIS_BRANCH
+
+after_deploy:
+- ./node_modules/.bin/wdio wdio.conf || travis_terminate 1
